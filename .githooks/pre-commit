@@ -1,0 +1,25 @@
+#!/bin/sh
+set -e
+######## KTLINT-GRADLE HOOK START ########
+
+CHANGED_FILES="$(git --no-pager diff --name-status --no-color --cached | awk '$1 != "D" && $NF ~ /\.kts?$/ { print $NF }')"
+
+if [ -z "$CHANGED_FILES" ]; then
+    echo "No Kotlin staged files."
+    exit 0
+fi;
+
+echo "Running ktlint over these files:"
+echo "$CHANGED_FILES"
+
+git stash push --keep-index
+
+./gradlew ktlintCheck -PinternalKtlintGitFilter="$CHANGED_FILES"
+
+echo "Completed ktlint run."
+
+
+git stash pop
+
+echo "Completed ktlint hook."
+######## KTLINT-GRADLE HOOK END ########
