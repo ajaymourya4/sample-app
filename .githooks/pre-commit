@@ -18,7 +18,6 @@ git stash push --keep-index
 
 echo "Completed ktlint run."
 
-
 git stash pop
 
 echo "Completed ktlint hook."
