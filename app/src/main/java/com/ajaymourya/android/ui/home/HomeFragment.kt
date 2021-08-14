@@ -1,4 +1,4 @@
-package com.ajaymourya.android.ui.main
+package com.ajaymourya.android.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater

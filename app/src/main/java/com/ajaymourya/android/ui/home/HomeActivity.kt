@@ -1,8 +1,8 @@
-package com.ajaymourya.android
+package com.ajaymourya.android.ui.home
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.ajaymourya.android.ui.main.HomeFragment
+import com.ajaymourya.android.R
 
 class HomeActivity : AppCompatActivity() {
 

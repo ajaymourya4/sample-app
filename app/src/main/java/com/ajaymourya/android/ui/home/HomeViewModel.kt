@@ -1,4 +1,4 @@
-package com.ajaymourya.android.ui.main
+package com.ajaymourya.android.ui.home
 
 import androidx.lifecycle.ViewModel
 
