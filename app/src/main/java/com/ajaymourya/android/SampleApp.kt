@@ -2,9 +2,10 @@ package com.ajaymourya.android
 
 import android.app.Application
 import android.content.Context
-import com.ajaymourya.android.di.module.CoreComponent
-import com.ajaymourya.android.di.module.DaggerAppComponent
-import com.ajaymourya.android.di.module.DaggerCoreComponent
+import com.ajaymourya.android.di.component.CoreComponent
+import com.ajaymourya.android.di.component.DaggerAppComponent
+import com.ajaymourya.android.di.component.DaggerCoreComponent
+import com.ajaymourya.android.di.module.ContextModule
 
 class SampleApp : Application() {
 
@@ -32,6 +33,7 @@ class SampleApp : Application() {
     private fun initCoreDependencyInjection() {
         coreComponent = DaggerCoreComponent
             .builder()
+            .contextModule(ContextModule(this))
             .build()
     }
 }

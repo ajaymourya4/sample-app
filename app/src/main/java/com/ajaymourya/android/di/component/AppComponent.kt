@@ -1,6 +1,7 @@
-package com.ajaymourya.android.di.module
+package com.ajaymourya.android.di.component
 
 import com.ajaymourya.android.SampleApp
+import com.ajaymourya.android.di.module.AppModule
 import com.ajaymourya.android.di.scopes.AppScope
 import dagger.Component
 
