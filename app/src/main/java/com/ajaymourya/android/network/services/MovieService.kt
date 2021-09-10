@@ -1,6 +1,7 @@
 package com.ajaymourya.android.network.services
 
-import retrofit2.Response
+import com.ajaymourya.android.network.responses.MovieResponse
+import com.ajaymourya.android.network.responses.PageResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -10,5 +11,5 @@ import retrofit2.http.Query
 interface MovieService {
 
     @GET("trending/movie/week")
-    suspend fun getWeeklyTrendingMovies(@Query("api_key") apiKey: String): Response<Any>
+    suspend fun getWeeklyTrendingMovies(@Query("api_key") apiKey: String): PageResponse<MovieResponse>
 }

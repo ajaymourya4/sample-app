@@ -6,10 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.ajaymourya.android.R
 import com.ajaymourya.android.SampleApp.Companion.coreComponent
 import com.ajaymourya.android.ui.list.di.DaggerMovieListComponent
 import com.ajaymourya.android.ui.list.di.MovieListModule
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MovieListFragment : Fragment() {
@@ -32,7 +37,12 @@ class MovieListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.get()
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.movieList.collect {
+                }
+            }
+        }
     }
 
     override fun onAttach(context: Context) {
