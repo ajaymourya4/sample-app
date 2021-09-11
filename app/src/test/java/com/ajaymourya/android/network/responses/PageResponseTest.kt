@@ -1,7 +1,7 @@
 package com.ajaymourya.android.network.responses
 
-import com.google.common.truth.Truth.assertThat
 import io.mockk.mockk
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
 class PageResponseTest {
