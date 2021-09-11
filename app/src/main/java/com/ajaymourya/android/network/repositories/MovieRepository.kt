@@ -11,8 +11,9 @@ private const val TMDB_API_KEY = BuildConfig.TMDB_API_KEY
 class MovieRepository @Inject constructor(val movieService: MovieService) {
 
     suspend fun getTrendingMovies(): PageResponse<MovieResponse> {
-        return movieService.getWeeklyTrendingMovies(
+        val result = movieService.getWeeklyTrendingMovies(
             apiKey = TMDB_API_KEY
         )
+        return result.body()!!
     }
 }
