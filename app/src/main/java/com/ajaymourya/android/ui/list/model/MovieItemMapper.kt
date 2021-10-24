@@ -5,6 +5,7 @@ import com.ajaymourya.android.network.responses.PageResponse
 
 fun PageResponse<MovieResponse>.toMovieItemList() = results.map {
     MovieItem(
+        id = it.id,
         title = it.title,
         overview = it.overview,
         releaseDate = it.releaseDate,

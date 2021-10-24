@@ -1,5 +1,6 @@
 package com.ajaymourya.android.network.responses
 
+import com.ajaymourya.android.ui.list.model.MovieItem
 import com.google.gson.annotations.SerializedName
 
 data class MovieResponse(
@@ -28,3 +29,13 @@ data class MovieResponse(
     @SerializedName("media_type")
     val mediaType: String
 )
+
+fun List<MovieResponse>.toMovieItemList() = this.map {
+    MovieItem(
+        id = it.id,
+        title = it.title,
+        overview = it.overview,
+        releaseDate = it.releaseDate,
+        posterPath = it.posterPath
+    )
+}

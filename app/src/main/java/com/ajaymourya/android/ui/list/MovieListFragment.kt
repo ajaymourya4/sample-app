@@ -13,7 +13,7 @@ import com.ajaymourya.android.SampleApp.Companion.coreComponent
 import com.ajaymourya.android.databinding.FragmentMovieListBinding
 import com.ajaymourya.android.ui.list.di.DaggerMovieListComponent
 import com.ajaymourya.android.ui.list.di.MovieListModule
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -41,13 +41,13 @@ class MovieListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = MovieListAdapter(emptyList())
+        adapter = MovieListAdapter()
         binding.movieList.adapter = adapter
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.movieList.collect {
-                    adapter.submitList(it)
+                viewModel.getPaginatedTrendingMovies().collectLatest {
+                    adapter.submitData(it)
                 }
             }
         }
